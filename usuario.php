@@ -1,3 +1,14 @@
+<?php
+include "usuarioDAO.php";
+
+$usuarioDAO = new usuarioDAO();
+$lista = $usuarioDAO->buscar();
+?>
+
+
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -83,18 +94,22 @@
         <th>E-mail</th>
         <th>Ações</th>
       </tr>
+      <?php
+        foreach($lista as $usuario): ?>
       <tr>
-        <td>1</td>
-        <td>João</td>
-        <td>joao@etecia.com.br</td>
-        <td>Ações</td>
+
+        <td><?= $usuario->usuario ?></td>
+        <td><?= $usuario->nome ?></td>
+        <td><?= $usuario->email ?></td>
+        
         <td>
-          <button class = "btn btn-danger"> <i class="fas fa-user-minus"> </i></button>
+          <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
           <button class = "btn btn-warning"> <i class="fas fa-user-edit"></i> </button>
           <button class = "btn btn-primary"> <i class="fas fa-key"></i> </button>
         </td>
 
       </tr>
+    <?php endforeach ?>
 
     </table>
 
