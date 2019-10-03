@@ -1,28 +1,32 @@
 <?php
 
-include "usuarioDAO.php";
+include "UsuarioDAO.php";
+
 $acao = $_GET["acao"];
 
-switch ($acao) {
-	case 'inserir' :
-		$usuario = new UsuarioDAO();
-
-		$usuario ->nome = $_POST["nome"] ;
-		$usuario ->email =  $_POST["email"];
-		$usuario ->senha =  $_POST["senha"];
-
-		$usuario -> inserir();
+switch ($acao){
+    case 'inserir':
+		$usuarios = new UsuarioDAO();
+		$usuarios->nome = $_POST["nome"];
+		$usuarios->email = $_POST["email"];
+		$usuarios->senha = $_POST["senha"];
+		$usuarios->inserir();
 		break;
-	case 'apagar' :
-		$usuario = new UsuarioDAO();
+
+	case 'apagar':
+		$usuarios = new UsuarioDAO();
 		$id = $_GET["id"];
-		$usuario->apagar($id);
+		$usuarios->apagar($id);
 		break;
 
+	case 'trocarsenha':
+		$usuarios = new UsuarioDAO();
+		$id = $_POST["id"];
+		$senha = $_POST["senha"];
+		$usuarios->trocarsenha($id, $senha);
+		break;
+
+	default:
+		break;
 }
-
-
-
-
-
 ?>
