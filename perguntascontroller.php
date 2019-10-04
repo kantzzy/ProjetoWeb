@@ -7,9 +7,8 @@ $acao = $_GET["acao"];
 switch ($acao){
     case 'inserir':
 		$perguntas = new PerguntaDAO();
-		$perguntas->nome = $_POST["nome"];
-		$perguntas->email = $_POST["email"];
-		$perguntas->senha = $_POST["senha"];
+		$perguntas->tipo = $_POST["tipo"];
+		$perguntas->enunciado = $_POST["enunciado"];
 		$perguntas->inserir();
 		break;
 
@@ -19,11 +18,11 @@ switch ($acao){
 		$perguntas->apagar($id);
 		break;
 
-	case 'trocarsenha':
-		$perguntas = new DAO();
+	case 'mudarenunciado':
+		$perguntas = new PerguntaDAO();
 		$id = $_POST["id"];
-		$senha = $_POST["senha"];
-		$perguntas->trocarsenha($id, $senha);
+		$enunciado = $_POST["enunciado"];
+		$perguntas->mudarenunciado($id, $enunciado);
 		break;
 
 	default:

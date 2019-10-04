@@ -1,8 +1,8 @@
 <?php
 include "perguntasDAO.php";
 
-$perguntasDAO = new PerguntaDAO();
-$lista = $perguntasDAO->buscar();
+$perguntaDAO = new PerguntaDAO();
+$lista = $perguntaDAO->buscar();
 ?>
 
 
@@ -67,7 +67,7 @@ $lista = $perguntasDAO->buscar();
          <a class="nav-link" href="usuario.php">Usuários</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link active" href="#">Perguntas</a>
+         <a class="nav-link active" href="perguntas.php">Perguntas</a>
        </li>
        <li class="nav-item">
          <a class="nav-link" href="#">Link</a>
@@ -79,13 +79,14 @@ $lista = $perguntasDAO->buscar();
    </div>
 
    <div class="col-10">
-    <br>
-    <h3>Perguntas</h3>
+   <br>
+    <h3>Questões</h3>
+   <br>
     <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Nova Questão</button>
     <table class = "table">
       <tr>
         <th>Questão</th>
-        <th>Enunciados</th>
+        <th>Enunciado</th>
         <th>Tipo</th>
         <th>Ações</th>
       </tr>
@@ -98,11 +99,8 @@ $lista = $perguntasDAO->buscar();
           <td><?= $pergunta->tipo ?></td>
 
           <td>
-            <a class = "btn btn-danger" href="perguntascontroller.php?acao=apagar&id=<?= $pergunta->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
-            <button class = "btn btn-warning"> <i class="fas fa-user-edit"></i> </button>
-            <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$perguntas->pergunta?>">
-              <i class="fas fa-key"></i>
-            </a>
+            <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$pergunta->questao?>"><i class="far fa-edit"></i></a>
+            <a class = "btn btn-danger" href="perguntascontroller.php?acao=apagar&id=<?=$pergunta->questao?>"> <i class="fas fa-minus-circle"></i></a>
           </td>
 
         </tr>
@@ -115,19 +113,19 @@ $lista = $perguntasDAO->buscar();
 </div>
 
 
-<!-- ModalTrocarSenha -->
+<!-- ModalMudarEnunciado -->
 <div class="modal fade" id="modalsenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <form action= "perguntascontroller.php?acao=trocarsenha" method="POST">
+        <form action= "perguntascontroller.php?acao=mudarenunciado" method="POST">
           <input type="hidden" name="id" id="campo-id">
           <div class="form-group">
             <div class="form-group">
-              <label for="exampleInputPassword1">Alterar Senha</label>
-              <input type="password" name="senha" class="form-control" id="trocarsenha" placeholder="Nova Senha">
+              <label for="exampleInputPassword1">Editar enunciado</label>
+              <input type="text" name="enunciado" class="form-control" id="mudarenunciado" placeholder="Novo Enunciado">
             </div>
-            <button type="submit" class="btn btn-primary " >Enviar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
           </div>
         </div>
       </div>
@@ -135,34 +133,25 @@ $lista = $perguntasDAO->buscar();
 </div>
 </div>
     <!-- ModalInserir -->
-    <div class="modal fade" id="modalnovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalnovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <form action="perguntascontroller.php?acao=inserir" method="POST">
          <div class="form-group">
-          <label for="nome">Nome de usuário</label>
-          <input type="text" name="nome" class="form-control" id="Nome" placeholder="Nome completo">
+          <label for="nome">Tipo da Questão</label>
+          <input type="text" name="tipo" class="form-control" id="Tipo" placeholder="(Ex: Dissertativa, alternativa)">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Endereço de Email</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu email">
-          <small id="emailHelp" class="form-text text-muted">Nós nunca compartilharemos seu email com ninguém.</small>
+          <label for="exampleInputEmail1">Enunciado</label>
+          <input type="text" name="enunciado" class="form-control" id="Enunciado" placeholder="Digite o enunciado da questão">
+          <small id="emailHelp" class="form-text text-muted"></small>
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Senha</label>
-          <input type="password" name="senha" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-        </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Não sou robô</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Inscrever-se</button>
-
+        <button type="submit" class="btn btn-primary">Enviar questão</button>
+      </form>
       </div>
-    </form>
+    </div>
   </div>
-</div>
 </div>
 </body>
 

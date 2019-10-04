@@ -7,7 +7,7 @@ class UsuarioDAO{
 	private $con;
 
 	function __construct(){
-		$rs = $this->con = mysqli_connect("localhost:3307", "root", "", "projetopw");
+		$rs = $this->con = mysqli_connect("localhost:3306", "root", "", "projetopw");
 	}
 	public function apagar ($id){
 		$sql = "DELETE FROM usuarios WHERE usuario=$id";
@@ -19,7 +19,7 @@ class UsuarioDAO{
 
 
 	public function inserir(){
-		$con = mysqli_connect("localhost:3307","root","","projetopw");
+		$con = mysqli_connect("localhost:3306","root","","projetopw");
 		$sql = "INSERT INTO usuarios VALUES (0,'$this->nome','$this->email', md5('$this->senha') )";
 		$rs = $this->con->query($sql);
 		if($rs)
@@ -31,7 +31,7 @@ class UsuarioDAO{
 
 
 	public function buscar(){
-		$con = mysqli_connect("localhost:3307", "root", "", "projetopw");
+		$con = mysqli_connect("localhost:3306", "root", "", "projetopw");
 		$sql = "SELECT * FROM usuarios";
 		$rs = $this->con->query($sql);
 		$listaDeUsuarios = array();

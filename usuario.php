@@ -79,7 +79,9 @@ $lista = $usuarioDAO->buscar();
    </div>
 
    <div class="col-10">
+   <br>
     <h3>Usuários</h3>
+    <br>    
     <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Novo Usuário</button>
     <table class = "table">
       <tr>
