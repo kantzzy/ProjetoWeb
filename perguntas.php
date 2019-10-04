@@ -1,8 +1,8 @@
 <?php
-include "usuarioDAO.php";
+include "perguntasDAO.php";
 
-$usuarioDAO = new UsuarioDAO();
-$lista = $usuarioDAO->buscar();
+$perguntasDAO = new PerguntaDAO();
+$lista = $perguntasDAO->buscar();
 ?>
 
 
@@ -64,10 +64,10 @@ $lista = $usuarioDAO->buscar();
    <div class = "col-2">
      <ul class="nav flex-column nav-pills vertical">
        <li class="nav-item">
-         <a class="nav-link active" href="#">Usuários</a>
+         <a class="nav-link" href="usuario.php">Usuários</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="perguntas.php">Perguntas</a>
+         <a class="nav-link active" href="#">Perguntas</a>
        </li>
        <li class="nav-item">
          <a class="nav-link" href="#">Link</a>
@@ -79,27 +79,28 @@ $lista = $usuarioDAO->buscar();
    </div>
 
    <div class="col-10">
-    <h3>Usuários</h3>
-    <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Novo Usuário</button>
+    <br>
+    <h3>Perguntas</h3>
+    <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Nova Questão</button>
     <table class = "table">
       <tr>
-        <th>#</th>
-        <th>Nome</th>
-        <th>E-mail</th>
+        <th>Questão</th>
+        <th>Enunciados</th>
+        <th>Tipo</th>
         <th>Ações</th>
       </tr>
       <?php
-      foreach($lista as $usuario): ?>
+      foreach($lista as $pergunta): ?>
         <tr>
 
-          <td><?= $usuario->usuario ?></td>
-          <td><?= $usuario->nome ?></td>
-          <td><?= $usuario->email ?></td>
+          <td><?= $pergunta->questao ?></td>
+          <td><?= $pergunta->enunciado ?></td>
+          <td><?= $pergunta->tipo ?></td>
 
           <td>
-            <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
+            <a class = "btn btn-danger" href="perguntascontroller.php?acao=apagar&id=<?= $pergunta->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
             <button class = "btn btn-warning"> <i class="fas fa-user-edit"></i> </button>
-            <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$usuario->usuario?>">
+            <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$perguntas->pergunta?>">
               <i class="fas fa-key"></i>
             </a>
           </td>
@@ -119,14 +120,14 @@ $lista = $usuarioDAO->buscar();
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <form action= "usuariocontroller.php?acao=trocarsenha" method="POST">
+        <form action= "perguntascontroller.php?acao=trocarsenha" method="POST">
           <input type="hidden" name="id" id="campo-id">
           <div class="form-group">
             <div class="form-group">
               <label for="exampleInputPassword1">Alterar Senha</label>
               <input type="password" name="senha" class="form-control" id="trocarsenha" placeholder="Nova Senha">
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary " >Enviar</button>
           </div>
         </div>
       </div>
@@ -134,11 +135,11 @@ $lista = $usuarioDAO->buscar();
 </div>
 </div>
     <!-- ModalInserir -->
-<div class="modal fade" id="modalnovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalnovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <form action="usuariocontroller.php?acao=inserir" method="POST">
+        <form action="perguntascontroller.php?acao=inserir" method="POST">
          <div class="form-group">
           <label for="nome">Nome de usuário</label>
           <input type="text" name="nome" class="form-control" id="Nome" placeholder="Nome completo">
@@ -157,10 +158,11 @@ $lista = $usuarioDAO->buscar();
           <label class="form-check-label" for="exampleCheck1">Não sou robô</label>
         </div>
         <button type="submit" class="btn btn-primary">Inscrever-se</button>
-      </form>
+
       </div>
-    </div>
+    </form>
   </div>
+</div>
 </div>
 </body>
 

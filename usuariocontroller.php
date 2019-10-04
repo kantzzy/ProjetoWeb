@@ -1,6 +1,6 @@
 <?php
 
-include "UsuarioDAO.php";
+include "usuarioDAO.php";
 
 $acao = $_GET["acao"];
 

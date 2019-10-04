@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioDAO{
+class PerguntaDAO{
 	public $nome;
 	public $email;
 	public $senha;
@@ -10,9 +10,9 @@ class UsuarioDAO{
 		$rs = $this->con = mysqli_connect("localhost:3307", "root", "", "projetopw");
 	}
 	public function apagar ($id){
-		$sql = "DELETE FROM usuarios WHERE usuario=$id";
+		$sql = "DELETE FROM perguntas WHERE questao=$id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:usuario.php");
+		if ($rs) header("Location:perguntas.php");
 		else echo $this->con->error; 
 	}
 
@@ -20,10 +20,10 @@ class UsuarioDAO{
 
 	public function inserir(){
 		$con = mysqli_connect("localhost:3307","root","","projetopw");
-		$sql = "INSERT INTO usuarios VALUES (0,'$this->nome','$this->email', md5('$this->senha') )";
+		$sql = "INSERT INTO perguntas VALUES (0,'$this->questao','$this->enunciado', $this->tipo )";
 		$rs = $this->con->query($sql);
 		if($rs)
-			header ("Location:usuario.php");
+			header ("Location:perguntas.php");
 		else 
 			echo $this->con->error;
 	}
@@ -32,7 +32,7 @@ class UsuarioDAO{
 
 	public function buscar(){
 		$con = mysqli_connect("localhost:3307", "root", "", "projetopw");
-		$sql = "SELECT * FROM usuarios";
+		$sql = "SELECT * FROM perguntas";
 		$rs = $this->con->query($sql);
 		$listaDeUsuarios = array();
 		while ($linha = $rs->fetch_object()){
@@ -44,7 +44,7 @@ class UsuarioDAO{
 	
 
 	public function trocarsenha($id, $senha){
-		$sql = "UPDATE usuarios SET senha=md5($senha) WHERE usuario=$id";
+		$sql = "UPDATE perguntas SET senha=md5($senha) WHERE questao=$id";
 		$rs = $this->con->query($sql);
 		if ($rs) header("Location:usuario.php");
 		else echo $this->con->error; 
