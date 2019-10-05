@@ -44,7 +44,7 @@ class PerguntaDAO{
 	
 
 	public function mudarenunciado($id, $enunciado){
-		$sql = "UPDATE perguntas SET enunciado=$enunciado WHERE enunciado=$id";
+		$sql = "UPDATE perguntas SET enunciado='$enunciado' WHERE questao=$id";
 		$rs = $this->con->query($sql);
 		if ($rs) header("Location:perguntas.php");
 		else echo $this->con->error; 

@@ -44,7 +44,7 @@ class UsuarioDAO{
 	
 
 	public function trocarsenha($id, $senha){
-		$sql = "UPDATE usuarios SET senha=md5($senha) WHERE usuario=$id";
+		$sql = "UPDATE usuarios SET senha=md5('$senha1') WHERE usuario=$id";
 		$rs = $this->con->query($sql);
 		if ($rs) header("Location:usuario.php");
 		else echo $this->con->error; 
