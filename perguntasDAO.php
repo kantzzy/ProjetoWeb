@@ -7,7 +7,7 @@ class PerguntaDAO{
 	private $con;
 
 	function __construct(){
-		$rs = $this->con = mysqli_connect("localhost:3306", "root", "", "projetopw");
+		$rs = $this->con = mysqli_connect("localhost:3307", "root", "", "projetopw");
 	}
 	public function apagar ($id){
 		$sql = "DELETE FROM perguntas WHERE questao= $id";
@@ -19,7 +19,7 @@ class PerguntaDAO{
 
 
 	public function inserir(){
-		$con = mysqli_connect("localhost:3306","root","","projetopw");
+		$con = mysqli_connect("localhost:3307","root","","projetopw");
 		$sql = "INSERT INTO perguntas VALUES (0,'$this->tipo','$this->enunciado')";
 		$rs = $this->con->query($sql);
 		if($rs)
@@ -31,7 +31,7 @@ class PerguntaDAO{
 
 
 	public function buscar(){
-		$con = mysqli_connect("localhost:3306", "root", "", "projetopw");
+		$con = mysqli_connect("localhost:3307", "root", "", "projetopw");
 		$sql = "SELECT * FROM perguntas";
 		$rs = $this->con->query($sql);
 		$listaDePerguntas = array();
