@@ -26,6 +26,13 @@ switch ($acao){
 		$usuarios->trocarsenha($id, $senha);
 		break;
 
+	case 'logar':
+		$usuarios = new UsuarioDAO();
+		$usuarios->email = $_POST["email"];
+		$usuarios->senha = $_POST["senha"];
+		$usuarios->logar();
+		break;
+
 	default:
 		break;
 }

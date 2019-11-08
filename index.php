@@ -1,5 +1,10 @@
 <?php
 
+if(!isset($_SERVER["PATH_INFO"])) {
+	require "login.php"; 
+	exit();
+}
+
 switch ($_SERVER["PATH_INFO"]) {
 	case  "/usuarios":
 	case  "/usuario":
@@ -9,7 +14,12 @@ switch ($_SERVER["PATH_INFO"]) {
 	case  "/perguntas":
 	case  "/pergunta":
 		require "perguntas.php";
-		break;	
+		break;
+
+	case  "/alternativas":
+	case  "/alternativa":
+		require "alternativas.php";
+		break;		
 
 
 	default:

@@ -12,7 +12,7 @@ class PerguntaDAO{
 	public function apagar ($id){
 		$sql = "DELETE FROM perguntas WHERE questao= $id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:perguntas.php");
+		if ($rs) header("Location:/perguntas");
 		else echo $this->con->error;
 	}
 
@@ -22,7 +22,7 @@ class PerguntaDAO{
 		$sql = "INSERT INTO perguntas VALUES (0,'$this->tipo','$this->enunciado')";
 		$rs = $this->con->query($sql);
 		if($rs)
-			header ("Location:perguntas.php");
+			header ("Location:/perguntas");
 		else 
 			echo $this->con->error;
 	}
@@ -44,7 +44,7 @@ class PerguntaDAO{
 	public function mudarenunciado($id, $enunciado){
 		$sql = "UPDATE perguntas SET enunciado='$enunciado' WHERE questao=$id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:perguntas.php");
+		if ($rs) header("Location:/perguntas");
 		else echo $this->con->error; 
 
 	}

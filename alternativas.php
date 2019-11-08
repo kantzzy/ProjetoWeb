@@ -1,10 +1,8 @@
 <?php
-session_start();
-if(!$_SESSION["logado"]) header("Location:/");
-include "usuarioDAO.php";
+include "alternativasDAO.php";
 
-$usuarioDAO = new UsuarioDAO();
-$lista = $usuarioDAO->buscar();
+$alternativasDAO = new AlternativasDAO();
+$lista = $alternativasDAO->buscar();
 
 include "cabecalho.php";
 include "menu.php";
@@ -30,16 +28,11 @@ include "menu.php";
 
    <div class="col-10">
    <br>
-    <h3>Usuários</h3>
+    <h3>Alternativas</h3>
     <br>    
-    <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Novo Usuário</button>
+    
     <table class = "table">
-      <tr>
-        <th>#</th>
-        <th>Nome</th>
-        <th>E-mail</th>
-        <th>Ações</th>
-      </tr>
+       <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-plus"></i></button>
       <?php
       foreach($lista as $usuario): ?>
         <tr>
@@ -49,10 +42,8 @@ include "menu.php";
           <td><?= $usuario->email ?></td>
 
           <td>
-            <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
-            <button class = "btn btn-warning"> <i class="fas fa-user-edit"></i> </button>
-            <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$usuario->usuario?>">
-              <i class="fas fa-key"></i>
+            <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-trash"></i></a>
+            <button class = "btn btn-blue"> <i class="fas fa-check"></i> </button>
             </a>
           </td>
 
@@ -90,9 +81,9 @@ include "menu.php";
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <form action="usuariocontroller.php?acao=inserir" method="POST">
+        <form action="alternativascontroller.php?acao=inserir" method="POST">
          <div class="form-group">
-          <label for="nome">Nome de usuário</label>
+          <label for="nome"></label>
           <input type="text" name="nome" class="form-control" id="Nome" placeholder="Nome completo">
         </div>
         <div class="form-group">
@@ -122,12 +113,6 @@ include "menu.php";
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-      var botao = document.querySelector(".alterar-senha");
-      botao.addEventListener("click", function(){
-        var campo = document.querySelector("#campo-id");
-        campo.value = botao.getAttribute("data-id");
-      });
     </script>
 
     </html>

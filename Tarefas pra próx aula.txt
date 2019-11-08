@@ -1,0 +1,1 @@
+Criar um arquivo para identificar login e dar include em todos os arquivos

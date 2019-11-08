@@ -1,10 +1,8 @@
 <?php
-session_start();
-if(!$_SESSION["logado"]) header("Location:/");
-include "usuarioDAO.php";
+include "tiposDAO.php";
 
-$usuarioDAO = new UsuarioDAO();
-$lista = $usuarioDAO->buscar();
+$tiposDAO = new TiposDAO();
+$lista = $tiposDAO->buscar();
 
 include "cabecalho.php";
 include "menu.php";
@@ -30,28 +28,24 @@ include "menu.php";
 
    <div class="col-10">
    <br>
-    <h3>Usuários</h3>
+    <h3>Tipos de Pergunta</h3>
     <br>    
-    <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Novo Usuário</button>
+    <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Novo Tipo</button>
     <table class = "table">
       <tr>
         <th>#</th>
-        <th>Nome</th>
-        <th>E-mail</th>
-        <th>Ações</th>
+        <th>Tipo</th>
       </tr>
       <?php
-      foreach($lista as $usuario): ?>
+      foreach($lista as $tipo): ?>
         <tr>
 
-          <td><?= $usuario->usuario ?></td>
-          <td><?= $usuario->nome ?></td>
-          <td><?= $usuario->email ?></td>
+          <td><?= $tipo->tipos ?></td>
 
           <td>
-            <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
+            <a class = "btn btn-danger" href="tiposcontroller.php?acao=apagar&id=<?= $tipos->tipos ?>"> <i class="fas fa-user-minus"> </i></a>
             <button class = "btn btn-warning"> <i class="fas fa-user-edit"></i> </button>
-            <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$usuario->usuario?>">
+            <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$tipos->tipos?>">
               <i class="fas fa-key"></i>
             </a>
           </td>
@@ -71,7 +65,7 @@ include "menu.php";
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <form action= "usuariocontroller.php?acao=trocarsenha" method="POST">
+        <form action= "tiposcontroller.php?acao=trocarsenha" method="POST">
           <input type="hidden" name="id" id="campo-id">
           <div class="form-group">
             <div class="form-group">
