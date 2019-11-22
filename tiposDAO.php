@@ -7,7 +7,7 @@ class TiposDAO{
 	private $con;
 
 	function __construct(){
-		$rs = $this->con = mysqli_connect("localhost:3306", "root", "etecia", "projetopw");
+		$rs = $this->con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 	}
 	public function apagar ($id){
 		$sql = "DELETE FROM tiposquestoes WHERE tipos=$id";

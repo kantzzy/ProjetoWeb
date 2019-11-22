@@ -6,6 +6,7 @@ $lista = $alternativasDAO->buscar();
 
 include "cabecalho.php";
 include "menu.php";
+include "alerta.php";
 ?>
 
 
@@ -27,6 +28,8 @@ include "menu.php";
 
 
    <div class="col-10">
+        <?php mostrarAlerta("success"); ?>
+    <?php mostrarAlerta("danger"); ?>
    <br>
     <h3>Alternativas</h3>
     <br>    

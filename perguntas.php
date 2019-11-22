@@ -6,6 +6,7 @@ $lista = $perguntaDAO->buscar();
 
 include "cabecalho.php";
 include "menu.php";
+include "alerta.php";
 ?>
 
 
@@ -28,7 +29,9 @@ include "menu.php";
 
 
    <div class="col-10">
-   <br>
+    <?php mostrarAlerta("success"); ?>
+    <?php mostrarAlerta("danger"); ?>
+    <br>
     <h3>Perguntas</h3>
    <br>
     <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Nova Questão</button>

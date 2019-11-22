@@ -1,5 +1,7 @@
 <?php
 
+require "config.php";
+
 class UsuarioDAO{
 	public $nome;
 	public $email;
@@ -7,13 +9,19 @@ class UsuarioDAO{
 	private $con;
 
 	function __construct(){
-		$rs = $this->con = mysqli_connect("localhost:3306", "root", "etecia", "projetopw");
+		$rs = $this->con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 	}
 	public function apagar ($id){
 		$sql = "DELETE FROM usuarios WHERE usuario=$id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:usuario.php");
-		else echo $this->con->error; 
+		session_start();
+		if ($rs){ 
+			$_SESSION["success"] = "usuário apagado com sucesso";
+		}
+		else{
+			$_SESSION["danger"] = "erro ao apagar usuário";
+		}
+		header("Location:/usuarios");
 	}
 
 
@@ -57,10 +65,19 @@ class UsuarioDAO{
 			session_start();
 			$_SESSION["logado"]= true;
 			header("Location:/usuario");
-		} else {
+		} 
+		else {
 			header("Location:/login");
 		}
 	}
+
+	public function sair () {
+		session_start();
+		session_destroy();
+		header("Location:/");
+		
+	}
+
 
 }
 

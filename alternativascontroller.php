@@ -6,23 +6,26 @@ $acao = $_GET["acao"];
 
 switch ($acao){
     case 'inserir':
-		$alternativas = new UsuarioDAO();
+		$alternativas = new AlternativasDAO();
 		$alternativas->texto = $_POST["texto"];
-		$alternativas->correta = $_POST["correta"];
+		$alternativas->idQuestao = $_POST["idQuestao"];
+		if (isset($_POST["verdadeiro"])) $alternativas->verdadeiro = 1;
+		else $alternativas->verdadeiro = 0;
 		$alternativas->inserir();
 		break;
 
 	case 'apagar':
 		$alternaivas = new AlternativasDAO();
 		$id = $_GET["id"];
-		$alternativas->apagar($id);
+		$idQuestao = $_GET["idQuestao"]
+		$alternativas->apagar($id, $idQuestao);
 		break;
 
-	case 'trocarsenha':
-		$usuarios = new AlternativasDAO();
-		$id = $_POST["id"];
-		$senha = $_POST["senha"];
-		$alternativass->trocarsenha($id, $senha);
+	case 'alterar':
+		$alternativas = new AlternativasDAO();
+		$alternativas->texto = $_POST["texto"];
+		$alternativas->tipo = $_POST["tipo"];
+		$alternativas->alterar();
 		break;
 
 	default:

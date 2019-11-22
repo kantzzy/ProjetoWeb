@@ -1,7 +1,8 @@
 <?php
-session_start();
-if(!$_SESSION["logado"]) header("Location:/");
+require("verificarlogin.php");
+
 include "usuarioDAO.php";
+include "alerta.php";
 
 $usuarioDAO = new UsuarioDAO();
 $lista = $usuarioDAO->buscar();
@@ -24,12 +25,10 @@ include "menu.php";
 
 </head>
 <body>
+  <div class="col-10">
+    <?php mostrarAlerta("success"); ?>
+    <?php mostrarAlerta("danger"); ?>
 
-
-
-
-   <div class="col-10">
-   <br>
     <h3>Usuários</h3>
     <br>    
     <button class = "btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-user-plus"></i>   Novo Usuário</button>

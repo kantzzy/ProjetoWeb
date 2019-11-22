@@ -33,6 +33,11 @@ switch ($acao){
 		$usuarios->logar();
 		break;
 
+	case 'sair':
+		$usuarios = new UsuarioDAO();
+		$usuarios->sair();
+		break;
+
 	default:
 		break;
 }
