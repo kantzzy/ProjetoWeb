@@ -1,8 +1,9 @@
 <?php
-require "config.php";
+require_once "config.php";
 class AlternativasDAO{
 	public $texto;
 	public $correta;
+	public $idQuestao;
 	private $con;
 
 	function __construct(){
@@ -18,10 +19,10 @@ class AlternativasDAO{
 
 
 	public function inserir(){
-		$sql = "INSERT INTO alternaivas VALUES (0,'$this->texto','$this->correta')";
+		$sql = "INSERT INTO alternativas VALUES (0,'$this->texto','$this->correta','$this->idQuestao')";
 		$rs = $this->con->query($sql);
 		if($rs)
-			header ("Location:/alternativas");
+			header ("Location:/alternativas?idQuestao=$this->idQuestao");
 		else 
 			echo $this->con->error;
 	}
@@ -29,7 +30,7 @@ class AlternativasDAO{
 
 
 	public function buscar(){
-		$sql = "SELECT * FROM alternativas";
+		$sql = "SELECT * FROM alternativas WHERE idQuestao = '$this->idQuestao'";
 		$rs = $this->con->query($sql);
 		$listaDeAlternativas = array();
 		while ($linha = $rs->fetch_object()){
@@ -48,7 +49,15 @@ class AlternativasDAO{
 
 	}
 
+		public function buscarPorId(){
+		$sql = "SELECT * FROM alternativas WHERE questao=$this->idQuestao";
+		$rs = $this->con->query($sql);
+		if ($linha = $rs->fetch_object()){
+			$this->texto = $linha->texto;
+			$this->correta = $linha->correta;
+	}
+
 }
 
-
+}
 ?>

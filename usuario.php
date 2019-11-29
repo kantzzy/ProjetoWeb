@@ -49,10 +49,13 @@ include "menu.php";
 
           <td>
             <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
-            <button class = "btn btn-warning"> <i class="fas fa-user-edit"></i> </button>
+
+            <a class = "btn btn-warning" href= "usuariocontroller.php?acao=mudaremail&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-edit"></i> </a>
+
             <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$usuario->usuario?>">
               <i class="fas fa-key"></i>
             </a>
+
           </td>
 
         </tr>
@@ -84,6 +87,28 @@ include "menu.php";
     </form>
 </div>
 </div>
+
+<!--Modal Editar-->
+
+<div class="modal fade" id="modalemail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <form action= "usuariocontroller.php?acao=mudaremail" method="POST">
+          <input type="hidden" name="id" id="campo-id">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Alterar Email</label>
+              <input type="email" name="email" class="form-control" id="trocaremail" placeholder="Novo Email">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>
+</div>
+
     <!-- ModalInserir -->
 <div class="modal fade" id="modalnovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -122,7 +147,7 @@ include "menu.php";
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-      var botao = document.querySelector(".alterar-senha");
+      var botao = document.querySelector(".alterar-email");
       botao.addEventListener("click", function(){
         var campo = document.querySelector("#campo-id");
         campo.value = botao.getAttribute("data-id");

@@ -6,18 +6,18 @@ $acao = $_GET["acao"];
 
 switch ($acao){
     case 'inserir':
-		$alternativas = new AlternativasDAO();
-		$alternativas->texto = $_POST["texto"];
-		$alternativas->idQuestao = $_POST["idQuestao"];
-		if (isset($_POST["verdadeiro"])) $alternativas->verdadeiro = 1;
-		else $alternativas->verdadeiro = 0;
-		$alternativas->inserir();
+		$alternativa = new AlternativasDAO();
+		$alternativa->texto = $_POST["texto"];
+		$alternativa->idQuestao = $_POST["idQuestao"];
+		if (isset($_POST["verdadeiro"])) $alternativa->verdadeiro = 1;
+		else $alternativa->verdadeiro = 0;
+		$alternativa->inserir();
 		break;
 
 	case 'apagar':
-		$alternaivas = new AlternativasDAO();
+		$alternativas = new AlternativasDAO();
 		$id = $_GET["id"];
-		$idQuestao = $_GET["idQuestao"]
+		$idQuestao = $_GET["idQuestao"];
 		$alternativas->apagar($id, $idQuestao);
 		break;
 

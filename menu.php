@@ -1,5 +1,5 @@
 <?php
-$recurso = $_SERVER["PATH_INFO"]
+$recurso = $_SERVER["PATH_INFO"];
 ?>
 
 <div class="container-fluid">
@@ -11,9 +11,6 @@ $recurso = $_SERVER["PATH_INFO"]
        </li>
        <li class="nav-item">
          <a class="nav-link <?= ($recurso == '/perguntas')?'active':''?> " href="/perguntas">Perguntas</a>
-       </li>
-       <li class="nav-item">
-         <a class="nav-link <?= ($recurso == '/alternativas')?'active':''?> " href="/alternativas">Alternativas</a>
        </li>
        <li class="nav-item">
          <a class="nav-link <?= ($recurso == '/ranking')?'active':''?> " href="/ranking">Ranking</a>

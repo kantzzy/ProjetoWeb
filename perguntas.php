@@ -52,7 +52,12 @@ include "alerta.php";
 
           <td>
             <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$pergunta->questao?>"><i class="far fa-edit"></i></a>
+
+            <a class = "btn btn-warning" href="\alternativas?idQuestao=<?=$pergunta->questao?>" href="perguntascontroller.php?acao=alteraralternativas&id=<?=$pergunta->questao?>"> 
+            <i class="fa fa-list" aria-hidden="true"></i></a>
+
             <a class = "btn btn-danger" href="perguntascontroller.php?acao=apagar&id=<?=$pergunta->questao?>"> <i class="fas fa-minus-circle"></i></a>
+
           </td>
 
         </tr>
@@ -90,10 +95,6 @@ include "alerta.php";
     <div class="modal-content">
       <div class="modal-header">
         <form action="perguntascontroller.php?acao=inserir" method="POST">
-         <div class="form-group">
-          <label for="nome">Tipo da Questão</label>
-          <input type="text" name="tipo" class="form-control" id="Tipo" placeholder="(Ex: Dissertativa, alternativa)">
-        </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Enunciado</label>
           <input type="text" name="enunciado" class="form-control" id="Enunciado" placeholder="Digite o enunciado da questão">

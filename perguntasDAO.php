@@ -1,5 +1,5 @@
 <?php
-require "config.php";
+require_once "config.php";
 class PerguntaDAO{
 	public $questao;
 	public $tipo;
@@ -49,7 +49,24 @@ class PerguntaDAO{
 
 	}
 
+	public function mudaralternativa($id, $texto){
+		$sql = "UPDATE alternativas SET texto='$texto' WHERE questao=$id";
+		$rs = $this->con->query($sql);
+		if ($rs) header("Location:/alternativas");
+		else echo $this->con->error; 
+
+	}
+
+	public function buscarPorId(){
+		$sql = "SELECT * FROM perguntas WHERE questao=$this->questao";
+		$rs = $this->con->query($sql);
+		if ($linha = $rs->fetch_object()){
+			$this->enunciado = $linha->enunciado;
+			$this->tipo = $linha->tipo;
+	}
+
+
+
 }
-
-
+}
 ?>

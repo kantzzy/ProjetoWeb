@@ -25,6 +25,13 @@ switch ($acao){
 		$perguntas->mudarenunciado($id, $enunciado);
 		break;
 
+	case 'mudaralternativas':
+		$perguntas = new PerguntaDAO();
+		$id = $_POST["id"];
+		$texto = $_POST["texto"];
+		$perguntas->mudaralternativa($id, $texto);
+		break;
+
 	default:
 		break;
 }

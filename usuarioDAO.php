@@ -30,7 +30,7 @@ class UsuarioDAO{
 		$sql = "INSERT INTO usuarios VALUES (0,'$this->nome','$this->email', md5('$this->senha') )";
 		$rs = $this->con->query($sql);
 		if($rs)
-			header ("Location:usuario.php");
+			header ("Location:/usuarios");
 		else 
 			echo $this->con->error;
 	}
@@ -47,12 +47,19 @@ class UsuarioDAO{
 		return $listaDeUsuarios;
 	}
 
-	
+
+	public function mudaremail($id, $email){
+		$sql = "UPDATE usuarios SET email='$email' WHERE usuario=$id";
+		$rs = $this->con->query($sql);
+		if ($rs) header("Location:/usuarios");
+		else echo $this->con->error; 
+
+	}
 
 	public function trocarsenha($id, $senha){
 		$sql = "UPDATE usuarios SET senha=md5('$senha1') WHERE usuario=$id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:usuario.php");
+		if ($rs) header("Location:/usuarios");
 		else echo $this->con->error; 
 
 	}
@@ -64,7 +71,7 @@ class UsuarioDAO{
 		if($rs->num_rows>0){
 			session_start();
 			$_SESSION["logado"]= true;
-			header("Location:/usuario");
+			header("Location:/usuarios");
 		} 
 		else {
 			header("Location:/login");
