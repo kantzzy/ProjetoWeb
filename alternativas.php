@@ -2,6 +2,7 @@
 
 include "alternativasDAO.php";
 include "perguntasDAO.php";
+include "alerta.php";
 
 $idQuestao = $_GET["idQuestao"];
 
@@ -37,7 +38,7 @@ include "alerta.php";
 
 
    <div class="col-10">
-        <?php mostrarAlerta("success"); ?>
+    <?php mostrarAlerta("success"); ?>
     <?php mostrarAlerta("danger"); ?>
    <br>
     <div class="container">
