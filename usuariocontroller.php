@@ -19,11 +19,12 @@ switch ($acao){
 		$usuarios->apagar($id);
 		break;
 
-	case 'mudaremail':
-		$usuarios = new UsuarioDAO();
-		$id = $_POST["id"];
-		$email = $_POST["emaill"];
-		$usuarios->mudaremail($id, $email);
+	case 'editar':
+		$usuario = new UsuarioDAO();
+		$usuario->id = $_POST["id"];
+		$usuario->nome = $_POST["nome"];
+		$usuario->email = $_POST["email"];
+		$usuario->editar();
 		break;
 
 	case 'trocarsenha':

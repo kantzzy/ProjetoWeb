@@ -50,7 +50,9 @@ include "menu.php";
           <td>
             <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
 
-            <a class = "btn btn-warning" href= "usuariocontroller.php?acao=mudaremail&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-edit"></i> </a>
+           <button class="btn btn-warning" data-toggle="modal" data-target="#modaleditar" data-id="<?= $usuario->usuario?>" data-nome="<?= $usuario->nome ?>" data-email="<?= $usuario->email ?>">
+                <i class="fas fa-user-edit"></i>
+              </button>
 
             <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$usuario->usuario?>">
               <i class="fas fa-key"></i>
@@ -138,6 +140,38 @@ include "menu.php";
     </div>
   </div>
 </div>
+
+<!-- Modal Editar -->
+  <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="usuarioscontroller.php?acao=editar" method="POST">
+            <input type="hidden" name="id" id="campo-id-editar">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input type="text" name="nome" class="form-control" id="novonome" placeholder="Nome Completo">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" id="novoemail" placeholder="E-mail">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Concluir</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

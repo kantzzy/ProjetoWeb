@@ -48,19 +48,22 @@ class UsuarioDAO{
 	}
 
 
-	public function mudaremail($id, $email){
-		$sql = "UPDATE usuarios SET email='$email' WHERE usuario=$id";
+	public function editar(){
+		$sql = "UPDATE usuarios SET nome='$this->nome', email='$this->email' WHERE usuario=$this->id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:/usuarios");
-		else echo $this->con->error; 
-
+		if ($rs) 
+			header("Location:/usuarios");
+		else 
+			echo $this->con->error;
 	}
 
 	public function trocarsenha($id, $senha){
 		$sql = "UPDATE usuarios SET senha=md5('$senha1') WHERE usuario=$id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:/usuarios");
-		else echo $this->con->error; 
+		if ($rs) 
+			header("Location:/usuarios");
+		else
+		 echo $this->con->error; 
 
 	}
 
