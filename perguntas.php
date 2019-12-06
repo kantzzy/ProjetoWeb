@@ -1,12 +1,13 @@
 <?php
+require("verificarlogin.php");
 include "perguntasDAO.php";
-
+include "alerta.php";
 $perguntaDAO = new PerguntaDAO();
 $lista = $perguntaDAO->buscar();
 
 include "cabecalho.php";
 include "menu.php";
-include "alerta.php";
+
 ?>
 
 

@@ -11,6 +11,7 @@ $recurso = $_SERVER["PATH_INFO"];
        </li>
        <li class="nav-item">
          <a class="nav-link <?= ($recurso == '/perguntas')?'active':''?> " href="/perguntas">Perguntas</a>
+         <div class="col-10">
        </li>
        <li class="nav-item">
          <a class="nav-link <?= ($recurso == '/ranking')?'active':''?> " href="/ranking">Ranking</a>

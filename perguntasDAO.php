@@ -12,8 +12,14 @@ class PerguntaDAO{
 	public function apagar ($id){
 		$sql = "DELETE FROM perguntas WHERE questao= $id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:/perguntas");
-		else echo $this->con->error;
+		session_start();
+		if ($rs){ 
+			$_SESSION["success"] = "Questão apagada com sucesso";
+		}
+		else{
+			$_SESSION["danger"] = "Erro ao apagar questão";
+		}
+		header("Location:/perguntas");
 	}
 
 
@@ -21,10 +27,14 @@ class PerguntaDAO{
 	public function inserir(){
 		$sql = "INSERT INTO perguntas VALUES (0,'$this->tipo','$this->enunciado')";
 		$rs = $this->con->query($sql);
-		if($rs)
-			header ("Location:/perguntas");
-		else 
-			echo $this->con->error;
+		session_start();
+		if ($rs){ 
+			$_SESSION["success"] = "Questão inserida com sucesso";
+		}
+		else{
+			$_SESSION["danger"] = "Erro ao inserir questão";
+		}
+		header("Location:/perguntas");
 	}
 
 
@@ -44,16 +54,28 @@ class PerguntaDAO{
 	public function mudarenunciado($id, $enunciado){
 		$sql = "UPDATE perguntas SET enunciado='$enunciado' WHERE questao=$id";
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:/perguntas");
-		else echo $this->con->error; 
+		session_start();
+		if ($rs){ 
+			$_SESSION["success"] = "Questão editada com sucesso";
+		}
+		else{
+			$_SESSION["danger"] = "Erro ao editar questão";
+		}
+		header("Location:/perguntas");
 
 	}
 
 	public function mudaralternativa($id, $texto){
 		$sql = "UPDATE alternativas SET texto='$texto' WHERE questao=$id";
+		session_start();
 		$rs = $this->con->query($sql);
-		if ($rs) header("Location:/alternativas");
-		else echo $this->con->error; 
+		if ($rs){ 
+			$_SESSION["success"] = "Alternativa alterada com sucesso";
+		}
+		else{
+			$_SESSION["danger"] = "Erro ao alterar alternativa";
+		}
+		header("Location:/perguntas");
 
 	}
 

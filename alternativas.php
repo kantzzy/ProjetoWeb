@@ -1,8 +1,8 @@
 <?php
-
+require("verificarlogin.php");
 include "alternativasDAO.php";
 include "perguntasDAO.php";
-include "alerta.php";
+
 
 $idQuestao = $_GET["idQuestao"];
 
@@ -50,14 +50,19 @@ include "alerta.php";
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <?= $alternativa->texto ?>
         <span class="badge">
+
           <button class="btn btn-correta"><i class="fas fa-<?= ($alternativa->correta)?'check':'times'?>"></i></button>
-          <a href="AlternativasController.php?acao=apagar&id=<?= $alternativa->idAlternativa?>&idQuestao=<?= $idQuestao?>" class="btn btn-danger"><i class="fas fa-trash text-white"></i></a>
+          
+          <a href="alternativascontroller.php?acao=apagar&id=<?= $alternativa->idAlternativas?>&idQuestao=<?= $idQuestao?>" class="btn btn-danger"><i class="fas fa-trash text-white"></i></a>
+
         </span>
       </li>
     <?php endforeach ?>
   </ul>
+
   <button class="btn btn-primary" data-toggle="modal" data-target="#modalnovo"><i class="fas fa-plus"></i></button>
 </div>
+
 <!-- Modal Novo -->
 <div class="modal fade" id="modalnovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -92,6 +97,7 @@ include "alerta.php";
     </div>
   </div>
 </div>
+</body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

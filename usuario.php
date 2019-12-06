@@ -48,9 +48,9 @@ include "menu.php";
           <td><?= $usuario->email ?></td>
 
           <td>
-            <a class = "btn btn-danger" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
+            <a class = "btn btn-danger btn-editar" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
 
-           <button class="btn btn-warning" data-toggle="modal" data-target="#modaleditar" data-id="<?= $usuario->usuario?>" data-nome="<?= $usuario->nome ?>" data-email="<?= $usuario->email ?>">
+           <button class="btn btn-warning alterar-email" data-toggle="modal" data-target="#modaleditar" data-id="<?= $usuario->usuario?>" data-nome="<?= $usuario->nome ?>" data-email="<?= $usuario->email ?>">
                 <i class="fas fa-user-edit"></i>
               </button>
 
@@ -90,26 +90,6 @@ include "menu.php";
 </div>
 </div>
 
-<!--Modal Editar-->
-
-<div class="modal fade" id="modalemail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <form action= "usuariocontroller.php?acao=mudaremail" method="POST">
-          <input type="hidden" name="id" id="campo-id">
-          <div class="form-group">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Alterar Email</label>
-              <input type="email" name="email" class="form-control" id="trocaremail" placeholder="Novo Email">
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-          </div>
-        </div>
-      </div>
-    </form>
-</div>
-</div>
 
     <!-- ModalInserir -->
 <div class="modal fade" id="modalnovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -141,19 +121,18 @@ include "menu.php";
   </div>
 </div>
 
-<!-- Modal Editar -->
+<!-- Modal Editar Email -->
   <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form action="usuarioscontroller.php?acao=editar" method="POST">
-            <input type="hidden" name="id" id="campo-id-editar">
+          <form action="usuariocontroller.php?acao=editar" method="POST">
+            <input type="hidden" name="id" id="camp-id">
             <div class="form-group">
               <label for="nome">Nome</label>
               <input type="text" name="nome" class="form-control" id="novonome" placeholder="Nome Completo">
@@ -162,7 +141,7 @@ include "menu.php";
               <label for="email">Email</label>
               <input type="email" name="email" class="form-control" id="novoemail" placeholder="E-mail">
             </div>
-        </div>
+           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-primary">Concluir</button>
@@ -181,9 +160,17 @@ include "menu.php";
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-      var botao = document.querySelector(".alterar-email");
+      var botao = document.querySelector(".alterar-senha");
       botao.addEventListener("click", function(){
         var campo = document.querySelector("#campo-id");
+        campo.value = botao.getAttribute("data-id");
+      });
+
+  
+
+      var botao = document.querySelector(".alterar-email");
+      botao.addEventListener("click", function(){
+        var campo = document.querySelector("#camp-id");
         campo.value = botao.getAttribute("data-id");
       });
     </script>

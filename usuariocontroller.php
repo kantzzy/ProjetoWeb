@@ -20,11 +20,11 @@ switch ($acao){
 		break;
 
 	case 'editar':
-		$usuario = new UsuarioDAO();
-		$usuario->id = $_POST["id"];
-		$usuario->nome = $_POST["nome"];
-		$usuario->email = $_POST["email"];
-		$usuario->editar();
+		$usuarios = new UsuarioDAO();
+		$id = $_POST["id"];
+		$nome = $_POST["nome"];
+		$email = $_POST["email"];
+		$usuarios->editar($id, $nome, $email);
 		break;
 
 	case 'trocarsenha':

@@ -18,7 +18,7 @@ switch ($acao){
 		$alternativas = new AlternativasDAO();
 		$id = $_GET["id"];
 		$idQuestao = $_GET["idQuestao"];
-		$alternativas->apagar($id, $idQuestao);
+		$alternativas->apagar($id);
 		break;
 
 	case 'alterar':
