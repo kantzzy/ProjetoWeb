@@ -51,7 +51,7 @@ include "alerta.php";
         <?= $alternativa->texto ?>
         <span class="badge">
 
-          <button class="btn btn-correta"><i class="fas fa-<?= ($alternativa->correta)?'check':'times'?>"></i></button>
+
           
           <a href="alternativascontroller.php?acao=apagar&id=<?= $alternativa->idAlternativas?>&idQuestao=<?= $idQuestao?>" class="btn btn-danger"><i class="fas fa-trash text-white"></i></a>
 

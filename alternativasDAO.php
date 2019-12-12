@@ -10,16 +10,16 @@ class AlternativasDAO{
 		$rs = $this->con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 	}
 	public function apagar ($id, $idQuestao){
-		$sql = "DELETE FROM alternativas WHERE alternativas='$id'";
+		$sql = "DELETE FROM alternativas WHERE idAlternativas='$id'";
 		$rs = $this->con->query($sql);
 		session_start();
 		if ($rs){ 
 			$_SESSION["success"] = "Alternativa apagada com sucesso";
 		}
-		else{
+		else{	
 			$_SESSION["danger"] = "Erro ao apagar alternativa";
 		}
-		header("Location:/alternativas");
+		header("Location:\alternativas?idQuestao=$idQuestao");
 	}
 
 

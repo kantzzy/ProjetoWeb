@@ -50,9 +50,9 @@ include "menu.php";
           <td>
             <a class = "btn btn-danger btn-editar" href="usuariocontroller.php?acao=apagar&id=<?= $usuario->usuario ?>"> <i class="fas fa-user-minus"> </i></a>
 
-           <button class="btn btn-warning alterar-email" data-toggle="modal" data-target="#modaleditar" data-id="<?= $usuario->usuario?>" data-nome="<?= $usuario->nome ?>" data-email="<?= $usuario->email ?>">
+           <a class="btn btn-warning alterar-email" data-toggle="modal" data-target="#modaleditar" data-id="<?= $usuario->usuario?>" data-nome="<?= $usuario->nome ?>" data-email="<?= $usuario->email ?>" href="usuariocontroller.php?acao=editar&id=<?= $usuario->usuario ?>">
                 <i class="fas fa-user-edit"></i>
-              </button>
+              </a>
 
             <a type="button" class="btn btn-primary alterar-senha" data-toggle="modal" data-target="#modalsenha"  data-id="<?=$usuario->usuario?>">
               <i class="fas fa-key"></i>

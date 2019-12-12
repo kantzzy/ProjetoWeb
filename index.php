@@ -21,6 +21,9 @@ switch ($_SERVER["PATH_INFO"]) {
 		require "alternativas.php";
 		break;		
 
+	case "/login";
+		require "login.php";
+		break;
 
 	default:
 		echo "Erro 404 - Página não encontrada";
